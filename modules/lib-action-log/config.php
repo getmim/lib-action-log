@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'lib-action-log',
-    '__version' => '0.0.1',
+    '__version' => '1.0.0',
     '__git' => 'git@github.com:getmim/lib-action-log.git',
     '__license' => 'MIT',
     '__author' => [

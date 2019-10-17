@@ -48,16 +48,22 @@ class Logger
 
         if(is_object($data['original']) && is_object($data['changes'])){
             $changes = (object)[];
+            $new_original = (object)[];
+
             foreach($data['original'] as $key => $value){
                 if(in_array($key, ['id','updated','created']))
                     continue;
 
                 if(!property_exists($data['changes'], $key))
-                    $changes->$key = null;
-                elseif($data['changes']->$key != $value)
+                    continue;
+                
+                if($data['changes']->$key != $value){
                     $changes->$key = $data['changes']->$key;
+                    $new_original->$key = $value;
+                }
             }
-            $row['changes'] = $changes;
+            $row['changes']  = $changes;
+            $row['original'] = $new_original;
         }
 
         foreach($req_objects as $field){
